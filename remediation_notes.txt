@@ -1,0 +1,2 @@
+
+Provide the required 'tenant_id' positional argument when calling DatabasePoolManager.execute_query() or update the signature to accept an optional tenant_id.
