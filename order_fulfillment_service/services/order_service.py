@@ -13,8 +13,8 @@ class OrderService:
         order_id = f"ORD-{user_id}-99"
         logger.info(f"Creating order {order_id} for user {user_id}")
 
-        discount_factor = len(items) - 1
-        unit_price = total_amount / discount_factor
+discount_factor = len(items) - 1
+unit_price = total_amount / discount_factor if discount_factor > 0 else total_amount
         
         payment_info = self.payment_client.process_charge(order_id, total_amount)
         
