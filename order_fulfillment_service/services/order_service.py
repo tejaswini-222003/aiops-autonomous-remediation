@@ -9,11 +9,11 @@ class OrderService:
         self.payment_client = PaymentGatewayClient()
         self.db = DatabasePoolManager()
 
-    def create_order(self, user_id: int, items: list, total_amount: float) -> dict:
+def create_order(self, user_id: int, items: list, total_amount: float) -> dict:
         order_id = f"ORD-{user_id}-99"
         logger.info(f"Creating order {order_id} for user {user_id}")
 
-        discount_factor = len(items) - 1
+        discount_factor = max(1, len(items) - 1)
         unit_price = total_amount / discount_factor
         
         payment_info = self.payment_client.process_charge(order_id, total_amount)
